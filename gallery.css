@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-bg: #F6F3EE;    /* Light Cream background */
+    --nav-bg: #1F2A24;     /* Dark Charcoal Green */
+    --text-main: #2B2B2B;  /* Dark text for Polaroids */
+    --text-2nd: #E7D4BB;   /* Muted Gold for Navbar */
+    --accent: #C8BFB3;     /* Muted Beige/Gold accent */
+}
+
+body {
+    background-color: var(--main-bg);
+    overflow-y: auto;      /* Ensures scrolling is enabled */
+    overflow-x: hidden;
+    font-family: 'Libre Baskerville', serif;
+}
+
+/* --- Navbar (The Floating Pill) --- */
+.navbar {
+    background-color: #1F2A24; /* Hex version of your nav color */
+    opacity: 0.95;
+    backdrop-filter: blur(12px);
+    border: 1px solid #C8BFB3;
+    box-shadow: 0 10px 30px #00000033;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 0.8rem 2.5rem;
+    border-radius: 100px;
+    width: fit-content;
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.navbar_logo a, .navbar_links a {
+    text-decoration: none;
+    color: var(--text-2nd);
+    transition: 0.3s ease;
+}
+
+.navbar_logo a { font-size: 1.6rem; letter-spacing: 0.05rem; }
+
+.hero-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 180px 10% 100px 10%; /* More top padding for breathing room */
+    
+    /* Clean Dark Green Background */
+    background-color: #1F2A24; 
+    background-image: url("img/BG.jpg"); 
+    background-blend-mode: overlay; /* Blends pattern into the color subtly */
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+.hero-text-box h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--text-2nd);
+    margin-bottom: 1.2rem;
+}
+
+.hero-divider {
+    width: 60px;
+    height: 2px;
+    background-color: #C8BFB3;
+    margin: 0 auto 1.5rem;
+}
+
+.hero-text-box p {
+    font-size: 1.2rem;
+    color: #C8BFB3;
+    max-width: 600px;
+    margin: 0 auto;
+    font-style: italic;
+}
+
+/* --- Map Styling --- */
+.map-wrapper {
+    margin-top: 60px;
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    /* This centers it perfectly */
+    display: flex;
+    justify-content: center;
+}
+
+.map-graphic {
+    width: 100%;
+    height: auto;
+    
+    /* 1. LOWER OPACITY: Makes it a texture, not a sticker */
+    opacity: 0.85; 
+    
+    /* 2. THE GOLD FILTER: Turns the map into the same color as your text (#E7D4BB) */
+    /* Note: This assumes your map image is black/dark. If it's white, remove 'invert(100%)' */
+    filter: invert(100%) sepia(100%) saturate(50%) hue-rotate(10deg) brightness(0.9);
+    
+    /* 3. BLEND MODE: Eliminates the grey box background */
+    mix-blend-mode: screen; 
+    
+    /* 4. SOFT FADE: Only fades the bottom edge so it doesn't look like a hard square */
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    
+    transition: opacity 0.5s ease;
+}
+
+
+
+.scroll-prompt {
+    margin-top: 40px;
+    color: #C8BFB3;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* --- Polaroid Section (The Soft Transition) --- */
+.collection-section {
+    padding: 100px 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+    
+    /* NEW FADE: From Dark Green (#1F2A24) to a deeper Warm Taupe (#D1C7BD) */
+    background: 
+        linear-gradient(to bottom, 
+            #1F2A24 0%, 
+            #D1C7BD 400px, 
+            #F6F3EE 100%), 
+        url("img/BG.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.polaroid {
+    background: #FFFFFF;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 10px 30px #0000001A;
+    width: 310px;
+    transition: 0.3s ease;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.polaroid p {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--text-main);
+}
+
+/* Scattered "Scrapbook" Tilt */
+.polaroid:nth-child(even) { transform: rotate(2deg); }
+.polaroid:nth-child(odd) { transform: rotate(-2deg); }
+
+.polaroid:hover {
+    transform: rotate(0) scale(1.05);
+    z-index: 10;
+}
+
+/* Mobile Media Query */
+@media (max-width: 768px) {
+    .navbar { width: 90%; gap: 1.5rem; top: 20px; padding: 0.6rem 1.2rem; }
+    .navbar_logo a { font-size: 1.1rem; }
+    .hero-gallery { padding-top: 120px; }
+}

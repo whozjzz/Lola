@@ -1,0 +1,217 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --main-bg:#F6F3EE;
+    --nav-bg: #1F2A24;
+    --soft-bg:#F2EEE8;
+    --bg-dark:#0F1310;
+    --text-main:#2b2b2b;
+    --text-2nd:#E7D4BB;
+    --text-accent: #C8BFB3;
+    --accent:#C8BFB3;
+}
+
+body{
+    background:var(--main-bg);
+    height: 100%;
+    overflow: hidden;
+}
+
+/*hero*/
+
+.hero{
+    background: 
+        linear-gradient(rgba(242, 223, 194, 0.9), rgba(237, 206, 156, 0.7)),
+        url("img/BG.jpg");
+    background-blend-mode: overlay;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    flex-direction: row;
+    max-width: 100%;
+    min-height: 100vh;
+    padding: 5rem 5%;
+    overflow-x: hidden;
+}
+
+/*Left Hero*/
+.hero_left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 45%;
+    padding-left: 1rem;
+}
+
+.left_content{
+    max-width: 520px;
+    padding: 2rem;
+    margin-left: -1rem;
+    text-align: left;
+    border-left: 1px solid var(--nav-bg);
+    padding-left: 3rem;
+}
+
+.left_quote p{
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color:var(--text-main);
+}
+
+.left_name{
+    font-family: 'Libre Baskerville', serif;
+    font-size: 3.4rem;
+    letter-spacing: -1px;
+    margin: 0;
+    color: var(--text-main);
+}
+
+.left_date{
+    color: var(--bg-dark);
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    margin-bottom: 1rem;
+}
+
+/*Right Hero*/
+.hero_right{
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero_img{
+    width: 100%;
+    max-width: 720px;
+    height: 100%;
+    border-radius: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    background: transparent;
+    
+}
+
+
+.hero_img video {
+    width: 100%;
+    max-width: 720px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 24px;
+}
+
+
+
+/*Navbar*/
+.navbar{
+  /* Colors & Glass Effect */
+    background-color: rgba(31, 42, 36, 0.8); /* Using your --nav-bg with transparency */
+    backdrop-filter: blur(12px);            /* The "frosted" high-end look */
+    border: 1px solid var(--accent);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    
+    /* Layout & Shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;              /* The "breating room" between the link and the name */
+    padding: 0.8rem 2.5rem;
+    border-radius: 100px;
+    
+    /* The "Island" Positioning */
+    width: fit-content;
+    position: fixed;
+    top: 40px;              /* Distance from top of screen */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.navbar_links a{
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    color: var(--text-2nd);
+}
+
+.navbar_links a:hover{
+    color: var(--accent);
+    transition: ease-in 0.2s;
+}
+
+
+.navbar_logo a{
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    color:var(--text-2nd);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.05rem;
+}
+
+.navbar_logo a:hover{
+    color: var(--accent);
+    transition: ease-in 0.2s;
+}
+
+@media (max-width: 768px) {
+    /* Stack the Hero items vertically */
+    .hero {
+        flex-direction: column;
+        padding: 4.5rem 1.5rem 2rem 1.5rem; /* More top padding so Navbar doesn't cover name */
+        gap: 2rem;
+        text-align: center;
+        height: auto; /* Allows page to scroll */
+    }
+
+    /* Make text and video fill the width */
+    .hero_left, .hero_right {
+        flex: 0 0 100%;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Remove the vertical line on mobile and center the text */
+    .left_content {
+        border-left: none; 
+        border-bottom: 1px solid rgba(0,0,0,0.1); /* Soft horizontal divider instead */
+        padding: 0 0 2rem 0;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .left_name {
+        font-size: 2.5rem; /* Smaller font for mobile screens */
+    }
+
+    /* Navbar Island Mobile Tweak */
+    .navbar {
+        width: 85%; /* Slightly wider pill for mobile */
+        gap: 1.5rem;
+        padding: 0.6rem 1.2rem;
+        top: 20px;
+    }
+
+    .navbar_logo a {
+        font-size: 1.1rem; /* Shrink name in navbar */
+    }
+    
+    .navbar_links a {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+}
